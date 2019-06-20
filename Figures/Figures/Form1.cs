@@ -15,12 +15,12 @@ namespace Figures
     {
         #region Variables
 
-        Graphics graphicsUnit;
-        List<AbstractFigure> figuresOnDesk;
-        Random randomForPosition;
-        Point startPosition;
-        float sizeForFigures = 50;
-        Size sizeOfMainFiguresBox;
+        private Graphics graphicsUnit;
+        private List<AbstractFigure> figuresOnDesk;
+        private Random randomForPosition;
+        private Point startPosition;
+        private float sizeForFigures = 50;
+        private Size sizeOfMainFiguresBox;
 
         #endregion
 
@@ -28,10 +28,10 @@ namespace Figures
 
         public FiguresForm()
         {
-            InitializeComponent();
-            figuresOnDesk = new List<AbstractFigure>();
-            timerForRedrawForm.Enabled = true;
-            sizeOfMainFiguresBox = MainFiguresBox.Size;           
+            this.InitializeComponent();
+            this.figuresOnDesk = new List<AbstractFigure>();
+            this.timerForRedrawForm.Enabled = true;
+            this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;           
         }
 
         #endregion

@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows;
+﻿using System.Drawing;
 
 namespace Figures.Figure
 {
     public abstract class AbstractFigure
-    {
+    {       
+        public int dx = 20, dy = 5;
+
         private Point startPosition;
         private float sizeForFigures;
         private Point speed;
-        protected System.Drawing.Rectangle intersectZone;
-
-        public int dx = 20, dy = 5;
+        private System.Drawing.Rectangle intersectZone;
 
         public AbstractFigure(Point startPosition, float size)
         {
@@ -66,7 +60,8 @@ namespace Figures.Figure
 
         #endregion
 
-        abstract public void Move(Point p);
-        abstract public void Draw(Graphics g);
+        public abstract void Move(Point p);
+
+        public abstract void Draw(Graphics g);
     }
 }
