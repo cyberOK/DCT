@@ -44,28 +44,13 @@ namespace Figures
             {
                 MainFiguresBox.Refresh();
                 
-                foreach (AbstractFigure firstFigure in figuresOnDesk) // refactoring this (drawing and mooving for each figure)
+                foreach (AbstractFigure firstFigure in figuresOnDesk)
                 {
-                    System.Drawing.Rectangle firstFigureIntersectZone = firstFigure.IntersectZone;
-
                     if (figuresOnDesk.Count > 1)
                     {
-                        foreach (AbstractFigure secondFigure in figuresOnDesk) // refactoring this (collision check)
-                        {
-                            if (firstFigure.Equals(secondFigure))
-                                continue;
-                            else if (firstFigureIntersectZone.IntersectsWith(secondFigure.IntersectZone))
-                            {
-                                firstFigure.dx = -firstFigure.dx;
-                                firstFigure.dy = -firstFigure.dy;
-                                firstFigure.StartPosition = new Point { X = firstFigure.dx, Y = firstFigure.dy };
-
-                                secondFigure.dx = -firstFigure.dx;
-                                secondFigure.dy = -firstFigure.dy;
-                                secondFigure.StartPosition = new Point { X = secondFigure.dx, Y = secondFigure.dy };
-                            }
-                        }
+                        CollisionCheck(firstFigure, figuresOnDesk);                       
                     }
+
                     firstFigure.Draw(graphicsUnit);
                     firstFigure.Move((Point)sizeOfMainFiguresBox);
                 }                
@@ -132,6 +117,7 @@ namespace Figures
         #endregion
 
         #region Helpful methods
+
         private void CreateNewTreeNode(AbstractFigure figureForNode)
         {
             TreeNode newNode = new TreeNode();
@@ -150,6 +136,26 @@ namespace Figures
             };
             return startCoordinates;
         }
+
+        private void CollisionCheck(AbstractFigure figureToCheck, IEnumerable<AbstractFigure> figureCollection)
+        {
+            foreach (AbstractFigure secondFigure in figuresOnDesk)
+            {               
+                if (figureToCheck.Equals(secondFigure))
+                    continue;
+                else if (figureToCheck.IntersectZone.IntersectsWith(secondFigure.IntersectZone))
+                {
+                    figureToCheck.dx = -figureToCheck.dx;
+                    figureToCheck.dy = -figureToCheck.dy;
+                    figureToCheck.StartPosition = new Point { X = figureToCheck.dx, Y = figureToCheck.dy };
+
+                    secondFigure.dx = -figureToCheck.dx;
+                    secondFigure.dy = -figureToCheck.dy;
+                    secondFigure.StartPosition = new Point { X = secondFigure.dx, Y = secondFigure.dy };
+                }
+            }
+        }
+
         #endregion
     }
 }
