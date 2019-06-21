@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Figures.Figure;
+using FiguresBase.Figure;
 
 namespace Figures
 {
@@ -86,7 +86,7 @@ namespace Figures
         private void buttonForRectangle_Click(object sender, EventArgs e)
         {
             startPosition = GetStartPositionCoordinates();
-            AbstractFigure rectangle = new Figure.Rectangle(startPosition, sizeForFigures);
+            AbstractFigure rectangle = new FiguresBase.Figure.Rectangle(startPosition, sizeForFigures);
             figuresOnDesk.Add(rectangle);
             CreateNewTreeNode(rectangle);
 

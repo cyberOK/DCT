@@ -46,6 +46,7 @@
     <Compile Include="Figure\Circle.cs" />
     <Compile Include="Figure\Rectangle.cs" />
     <Compile Include="Figure\Triangle.cs" />
+    <Compile Include="FileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

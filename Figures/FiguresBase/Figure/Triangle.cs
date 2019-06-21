@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Figures.Figure
+namespace FiguresBase.Figure
 {
     public class Triangle : AbstractFigure
     {
