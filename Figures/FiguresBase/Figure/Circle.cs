@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace FiguresBase.Figure
 {
+    [Serializable]
     public class Circle : AbstractFigure
     {
         public Circle(Point startPosition, float size) : base(startPosition, size)

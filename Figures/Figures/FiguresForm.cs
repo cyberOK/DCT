@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using FiguresBase.Figure;
+using FiguresBase.FileManager;
 
-namespace Figures
+namespace FiguresForm
 {
-    public partial class FiguresForm : Form
+    public interface IFiguresForm
+    {
+        string FilePath { get; }
+        IEnumerable<AbstractFigure> FiguresOnDesk { get; set; }
+        event EventHandler FileOpenClick;
+        event EventHandler FileSaveClick;
+    }
+
+    public partial class MainFiguresForm : Form,IFiguresForm
     {
         #region Variables
 
@@ -16,17 +25,33 @@ namespace Figures
         private Point startPosition;
         private float sizeForFigures = 50;
         private Size sizeOfMainFiguresBox;
+        private string filePath;
+
+        #endregion
+
+        #region Properties
+
+        public string FilePath
+        {
+            get => this.filePath;
+        }
+
+        public IEnumerable<AbstractFigure> FiguresOnDesk
+        {
+            get => figuresOnDesk;
+            set => figuresOnDesk = (List<AbstractFigure>)value; 
+        }
 
         #endregion
 
         #region Cunstructor of Form
 
-        public FiguresForm()
+        public MainFiguresForm()
         {
             this.InitializeComponent();
             this.figuresOnDesk = new List<AbstractFigure>();
             this.timerForRedrawForm.Enabled = true;
-            this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;           
+            this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;          
         }
 
         #endregion
@@ -109,6 +134,35 @@ namespace Figures
             }            
         }
 
+        private void buttonOpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog oFD = new OpenFileDialog();
+
+            oFD.Filter = "Binnary files (.dat)|*.dat|" + "XML files (.xml)|*.xml|" + "Json Files (.json)|*.json";
+            
+            if (oFD.ShowDialog() == DialogResult.OK)
+            {
+                this.filePath = oFD.FileName;
+
+                FileOpenClick?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private void buttonSaveFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sFD = new SaveFileDialog();
+            sFD.DefaultExt = ".dat";
+
+            sFD.Filter = "Binnary files (.dat)|*.dat|" + "XML files (.xml)|*.xml|" + "Json Files (.json)|*.json";
+
+            if(sFD.ShowDialog() == DialogResult.OK)
+            {
+                this.filePath = sFD.FileName;
+
+                FileSaveClick?.Invoke(this, EventArgs.Empty);
+            }            
+        }
+
         #endregion
 
         #region Helpful methods
@@ -152,5 +206,8 @@ namespace Figures
         }
 
         #endregion
+
+        public event EventHandler FileOpenClick;
+        public event EventHandler FileSaveClick;
     }
 }

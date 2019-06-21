@@ -1,6 +1,6 @@
-﻿namespace Figures
+﻿namespace FiguresForm
 {
-    partial class FiguresForm
+    partial class MainFiguresForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolPanel = new System.Windows.Forms.Panel();
+            this.buttonSaveFile = new System.Windows.Forms.Button();
+            this.buttonOpenFile = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
             this.buttonForRectangle = new System.Windows.Forms.Button();
             this.buttonforCircle = new System.Windows.Forms.Button();
@@ -38,8 +40,6 @@
             this.MainFiguresBox = new System.Windows.Forms.PictureBox();
             this.treeFigures = new System.Windows.Forms.TreeView();
             this.timerForRedrawForm = new System.Windows.Forms.Timer(this.components);
-            this.buttonOpenFile = new System.Windows.Forms.Button();
-            this.buttonSaveFile = new System.Windows.Forms.Button();
             this.toolPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainFiguresBox)).BeginInit();
             this.SuspendLayout();
@@ -59,6 +59,26 @@
             this.toolPanel.Name = "toolPanel";
             this.toolPanel.Size = new System.Drawing.Size(675, 50);
             this.toolPanel.TabIndex = 0;
+            // 
+            // buttonSaveFile
+            // 
+            this.buttonSaveFile.Location = new System.Drawing.Point(92, 13);
+            this.buttonSaveFile.Name = "buttonSaveFile";
+            this.buttonSaveFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveFile.TabIndex = 5;
+            this.buttonSaveFile.Text = "Save";
+            this.buttonSaveFile.UseVisualStyleBackColor = true;
+            this.buttonSaveFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
+            // 
+            // buttonOpenFile
+            // 
+            this.buttonOpenFile.Location = new System.Drawing.Point(10, 14);
+            this.buttonOpenFile.Name = "buttonOpenFile";
+            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenFile.TabIndex = 4;
+            this.buttonOpenFile.Text = "Open";
+            this.buttonOpenFile.UseVisualStyleBackColor = true;
+            this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
             // 
             // buttonStop
             // 
@@ -135,25 +155,7 @@
             this.timerForRedrawForm.Enabled = true;
             this.timerForRedrawForm.Tick += new System.EventHandler(this.timerForRedrawForm_Tick);
             // 
-            // buttonOpenFile
-            // 
-            this.buttonOpenFile.Location = new System.Drawing.Point(10, 14);
-            this.buttonOpenFile.Name = "buttonOpenFile";
-            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenFile.TabIndex = 4;
-            this.buttonOpenFile.Text = "Open";
-            this.buttonOpenFile.UseVisualStyleBackColor = true;
-            // 
-            // buttonSaveFile
-            // 
-            this.buttonSaveFile.Location = new System.Drawing.Point(92, 13);
-            this.buttonSaveFile.Name = "buttonSaveFile";
-            this.buttonSaveFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonSaveFile.TabIndex = 5;
-            this.buttonSaveFile.Text = "Save";
-            this.buttonSaveFile.UseVisualStyleBackColor = true;
-            // 
-            // FiguresForm
+            // MainFiguresForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -162,7 +164,7 @@
             this.Controls.Add(this.MainFiguresBox);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.toolPanel);
-            this.Name = "FiguresForm";
+            this.Name = "MainFiguresForm";
             this.RightToLeftLayout = true;
             this.Text = "FiguresForm";
             this.toolPanel.ResumeLayout(false);

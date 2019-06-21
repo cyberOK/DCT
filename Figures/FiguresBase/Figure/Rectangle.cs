@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace FiguresBase.Figure
 {
+    [Serializable]
     public class Rectangle : AbstractFigure
     {
         public Rectangle(Point startPosition, float size) : base(startPosition, size)

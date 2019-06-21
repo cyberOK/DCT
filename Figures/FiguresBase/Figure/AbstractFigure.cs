@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace FiguresBase.Figure
 {
+    [Serializable]
     public abstract class AbstractFigure
     {       
         public int dx = 20, dy = 5;

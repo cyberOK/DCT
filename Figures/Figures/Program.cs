@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FiguresBase.FileManager;
+using FiguresForm;
+using System;
 using System.Windows.Forms;
-
 namespace Figures
 {
     static class Program
@@ -14,9 +12,12 @@ namespace Figures
         [STAThread]
         static void Main()
         {
+            //MainFiguresForm form = new MainFiguresForm();
+            //FileManager manager = new FileManager();
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FiguresForm());
+            Application.Run(new MainFiguresForm());
         }
     }
 }
