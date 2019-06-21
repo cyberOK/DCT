@@ -18,3 +18,6 @@ C:\Users\7\source\repos\DCT\Figures\Figures\obj\Debug\Figures.csproj.GenerateRes
 C:\Users\7\source\repos\DCT\Figures\Figures\obj\Debug\Figures.csproj.CoreCompileInputs.cache
 C:\Users\7\source\repos\DCT\Figures\Figures\obj\Debug\Figures.exe
 C:\Users\7\source\repos\DCT\Figures\Figures\obj\Debug\Figures.pdb
+C:\Users\7\source\repos\DCT\Figures\Figures\bin\Debug\FiguresBase.dll
+C:\Users\7\source\repos\DCT\Figures\Figures\bin\Debug\FiguresBase.pdb
+C:\Users\7\source\repos\DCT\Figures\Figures\obj\Debug\Figures.csproj.CopyComplete
