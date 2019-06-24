@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using FiguresBase.Figure;
+using System.IO;
 using System.Xml.Serialization;
+using FiguresBase.Abstractions;
 
-namespace FiguresBase.FileManager
+namespace FiguresBase.Serializators
 {
-    public class XMLSerializer : AbstractSerializer
+    public class XMLSerialize
     {
+        XMLSerializer formatter;
+
+        public XMLSerializer()
+        {
+            this.formatter = new XMLSerializer();
+        }
+
         public override IEnumerable<AbstractFigure> OpenFiles(string fileName)
         {
             throw new NotImplementedException();

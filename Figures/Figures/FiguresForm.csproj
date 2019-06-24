@@ -52,6 +52,7 @@
     <Compile Include="FiguresForm.Designer.cs">
       <DependentUpon>FiguresForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FiguresForm.resx">

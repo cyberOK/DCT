@@ -43,20 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Figure\AbstractFigure.cs" />
-    <Compile Include="Figure\Circle.cs" />
-    <Compile Include="Figure\Rectangle.cs" />
-    <Compile Include="Figure\Triangle.cs" />
-    <Compile Include="FileManager\BinnarySerializer.cs" />
+    <Compile Include="Abstractions\AbstractFigure.cs" />
+    <Compile Include="Figures\Circle.cs" />
+    <Compile Include="Figures\Rectangle.cs" />
+    <Compile Include="Figures\Triangle.cs" />
+    <Compile Include="Serializators\BinnarySerializer.cs" />
     <Compile Include="FileManager\FileManager.cs" />
-    <Compile Include="FileManager\AbstractSerializer.cs" />
-    <Compile Include="FileManager\ExtentionDefinder.cs" />
-    <Compile Include="FileManager\JsonSerializer.cs" />
-    <Compile Include="FileManager\XMLSerializer.cs" />
+    <Compile Include="Abstractions\AbstractSerializer.cs" />
+    <Compile Include="Serializators\JsonSerializer.cs" />
+    <Compile Include="Serializators\XMLSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

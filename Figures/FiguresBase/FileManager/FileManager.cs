@@ -22,40 +22,35 @@ namespace FiguresBase.FileManager
         public AbstractSerializer Serializer { get; }
 
         public IEnumerable<AbstractFigure> GetSaveGame(string fileName)
-        {
-            ExtentionDefinder definder = new ExtentionDefinder();
+        {            
             IEnumerable<AbstractFigure> loadGame;
 
             string fileExtension = GetFileExtention(fileName);
 
             try
             {
-                serializer = definder.CreateSerializerByExtention(fileExtension);
+                serializer = this.CreateSerializerByExtention(fileExtension);
                 loadGame = serializer.OpenFiles(fileName);
                 return loadGame;
             }
-            catch (Exception) // Need to complete this
+            catch (Exception e) // Need to complete this
             {
-
-                throw;
+                throw e;
             }
         }
 
         public void SaveGame(string fileName, IEnumerable<AbstractFigure> figuresOnDesk)
         {
-            ExtentionDefinder definder = new ExtentionDefinder();
-
             string fileExtention = GetFileExtention(fileName);
 
             try
             {
-                serializer = definder.CreateSerializerByExtention(fileExtention);
+                serializer = this.CreateSerializerByExtention(fileExtention);
                 serializer.SaveFiles(fileName, figuresOnDesk);
             }
-            catch (Exception) // Need to complete this
+            catch (Exception e) // Need to complete this
             {
-
-                throw;
+                throw e;
             }
 
         }
@@ -65,6 +60,21 @@ namespace FiguresBase.FileManager
             int dotIndex = fileWithExtention.IndexOf('.');
             string extention = fileWithExtention.Substring(dotIndex);
             return extention;
+        }
+
+        private AbstractSerializer CreateSerializerByExtention(string extention)
+        {
+            switch (extention)
+            {
+                case ".dat":
+                    return new BinnarySerializer();
+                case ".xml":
+                    return new XMLSerializer();
+                case ".json":
+                    return new JsonSerializer();
+                default:
+                    throw new Exception("Don't find save format");
+            }
         }
     }
 }

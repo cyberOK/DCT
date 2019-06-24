@@ -1,7 +1,8 @@
-﻿using FiguresBase.FileManager;
-using FiguresForm;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using FiguresBase.FileManager;
+using FiguresForm;
+
 namespace Figures
 {
     static class Program
@@ -11,13 +12,15 @@ namespace Figures
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            //MainFiguresForm form = new MainFiguresForm();
-            //FileManager manager = new FileManager();
-            
+        {                      
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainFiguresForm());
+
+            MainFiguresForm form = new MainFiguresForm();
+            FileManager manager = new FileManager();
+            MainPresenter mainPresenter = new MainPresenter(form, manager);
+
+            Application.Run(form);
         }
     }
 }
