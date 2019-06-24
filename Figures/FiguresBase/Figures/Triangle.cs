@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.Serialization;
 
-namespace FiguresBase.Figure
+namespace FiguresBase.Figures
 {
     [Serializable]
     public class Triangle : AbstractFigure
     {
+        public Triangle() { }
+
         public Triangle(Point startPosition, float size) : base(startPosition, size)
         { }
 

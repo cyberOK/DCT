@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FiguresBase.FileManager;
-using FiguresBase.Figure;
+using FiguresBase;
 
 namespace FiguresForm
 {
@@ -22,7 +22,7 @@ namespace FiguresForm
         private void Form_FileSaveClick(object sender, EventArgs e)
         {
             string fileName = figuresForm.FilePath;
-            IEnumerable<AbstractFigure> figuresOnDesk = figuresForm.FiguresOnDesk;
+            List<AbstractFigure> figuresOnDesk = (List<AbstractFigure>)figuresForm.FiguresOnDesk;
 
             fileManager.SaveGame(fileName, figuresOnDesk);
         }

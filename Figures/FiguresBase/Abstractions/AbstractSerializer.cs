@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using FiguresBase.Figure;
+﻿using System.Collections.Generic;
 
-namespace FiguresBase.FileManager
+namespace FiguresBase
 {
     public abstract class AbstractSerializer
     {
         public abstract IEnumerable<AbstractFigure> OpenFiles(string filePath);
-        public abstract void SaveFiles(string filePath, IEnumerable<AbstractFigure> figuresOnDesk);
+        public abstract void SaveFiles(string filePath, List<AbstractFigure> figuresOnDesk);
     }
 }

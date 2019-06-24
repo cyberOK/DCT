@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using FiguresBase.Figure;
 
-
-namespace FiguresBase.FileManager
+namespace FiguresBase.Serializators
 {
     public class BinnarySerializer : AbstractSerializer
     {
@@ -18,18 +15,18 @@ namespace FiguresBase.FileManager
 
         public override IEnumerable<AbstractFigure> OpenFiles(string filePath)
         {
-            using(FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 IEnumerable<AbstractFigure> figuresByLoad = (IEnumerable<AbstractFigure>)this.formatter.Deserialize(fs);
                 return figuresByLoad;
             }          
         }
 
-        public override void SaveFiles(string filePath, IEnumerable<AbstractFigure> figuresOnDesk)
+        public override void SaveFiles(string filePath, List<AbstractFigure> figuresOnDesk)
         {
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, figuresOnDesk);
+                this.formatter.Serialize(fs, figuresOnDesk);
             }
         }
     }

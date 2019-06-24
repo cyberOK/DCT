@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.Serialization;
+using FiguresBase.Figures;
 
-namespace FiguresBase.Figure
+namespace FiguresBase
 {
+    [KnownType(typeof(Circle))]
+    [KnownType(typeof(Figures.Rectangle))]
+    [KnownType(typeof(Triangle))]
+    [DataContract]
     [Serializable]
     public abstract class AbstractFigure
-    {       
+    {    
+        [DataMember]
         public int dx = 20, dy = 5;
 
         private Point startPosition;
         private float sizeForFigures;
         private Point speed;
         private System.Drawing.Rectangle intersectZone;
+
+        public AbstractFigure() { }
 
         public AbstractFigure(Point startPosition, float size)
         {
@@ -24,6 +33,7 @@ namespace FiguresBase.Figure
 
         #region Properties
 
+        [DataMember]
         public virtual System.Drawing.Rectangle IntersectZone
         {
             get => this.intersectZone;
@@ -36,6 +46,7 @@ namespace FiguresBase.Figure
             }
         }
 
+        [DataMember]
         public Point StartPosition
         {
             get => this.startPosition;
@@ -46,12 +57,14 @@ namespace FiguresBase.Figure
             }
         }
 
+        [DataMember]
         public float SizeForFigure
         {
             get => this.sizeForFigures;
             private set => this.sizeForFigures = value;
         }
 
+        [DataMember]
         public Point Speed
         {
             get => this.speed;

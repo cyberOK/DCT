@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using FiguresBase.Figure;
-using FiguresBase.FileManager;
+using FiguresBase.Figures;
+using FiguresBase;
 
 namespace FiguresForm
 {
@@ -111,7 +111,7 @@ namespace FiguresForm
         private void buttonForRectangle_Click(object sender, EventArgs e)
         {
             startPosition = GetStartPositionCoordinates();
-            AbstractFigure rectangle = new FiguresBase.Figure.Rectangle(startPosition, sizeForFigures);
+            AbstractFigure rectangle = new FiguresBase.Figures.Rectangle(startPosition, sizeForFigures);
             figuresOnDesk.Add(rectangle);
             CreateNewTreeNode(rectangle);
 

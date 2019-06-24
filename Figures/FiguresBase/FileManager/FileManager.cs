@@ -1,13 +1,14 @@
-﻿using FiguresBase.Figure;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using FiguresBase.Figures;
+using FiguresBase.Serializators;
 
 namespace FiguresBase.FileManager
 {
     public interface IFileManager
     {
         IEnumerable<AbstractFigure> GetSaveGame(string filePath);
-        void SaveGame(string fileName, IEnumerable<AbstractFigure> figuresOnDesk);
+        void SaveGame(string fileName, List<AbstractFigure> figuresOnDesk);
     }
 
     public class FileManager:IFileManager
@@ -39,13 +40,13 @@ namespace FiguresBase.FileManager
             }
         }
 
-        public void SaveGame(string fileName, IEnumerable<AbstractFigure> figuresOnDesk)
+        public void SaveGame(string fileName, List<AbstractFigure> figuresOnDesk)
         {
             string fileExtention = GetFileExtention(fileName);
 
             try
             {
-                serializer = this.CreateSerializerByExtention(fileExtention);
+                serializer = CreateSerializerByExtention(fileExtention);
                 serializer.SaveFiles(fileName, figuresOnDesk);
             }
             catch (Exception e) // Need to complete this
@@ -69,7 +70,7 @@ namespace FiguresBase.FileManager
                 case ".dat":
                     return new BinnarySerializer();
                 case ".xml":
-                    return new XMLSerializer();
+                    return new XMLSerialize();
                 case ".json":
                     return new JsonSerializer();
                 default:

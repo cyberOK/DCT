@@ -1,20 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using FiguresBase.Figure;
+using System.IO;
+using FiguresBase.Figures;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
-namespace FiguresBase.FileManager
+namespace FiguresBase.Serializators
 {
     public class JsonSerializer : AbstractSerializer
     {
-        public override IEnumerable<AbstractFigure> OpenFiles(string fileName)
+        private DataContractJsonSerializer jsonFormatter;
+
+        public JsonSerializer()
         {
-            throw new NotImplementedException();
+            jsonFormatter = new DataContractJsonSerializer(typeof(List<AbstractFigure>));
         }
 
-        public override void SaveFiles(string filePath, IEnumerable<AbstractFigure> figuresOnDesk)
+        public override IEnumerable<AbstractFigure> OpenFiles(string fileName)
         {
-            throw new NotImplementedException();
+            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
+                IEnumerable<AbstractFigure> loadMovement = (IEnumerable<AbstractFigure>)jsonFormatter.ReadObject(fs);
+                return loadMovement;
+            }
+        }
+
+        public override void SaveFiles(string filePath, List<AbstractFigure> figuresOnDesk)
+        {
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                jsonFormatter.WriteObject(fs,figuresOnDesk);
+            }
         }
     }
 }

@@ -2,27 +2,33 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using FiguresBase.Abstractions;
 
 namespace FiguresBase.Serializators
 {
-    public class XMLSerialize
+    public class XMLSerialize : AbstractSerializer
     {
-        XMLSerializer formatter;
+        private XmlSerializer formatter;
 
-        public XMLSerializer()
+        public XMLSerialize()
         {
-            this.formatter = new XMLSerializer();
+            this.formatter = new XmlSerializer(typeof(List<AbstractFigure>));
         }
 
         public override IEnumerable<AbstractFigure> OpenFiles(string fileName)
         {
-            throw new NotImplementedException();
+            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
+                IEnumerable<AbstractFigure> loadMovement = (IEnumerable<AbstractFigure>)formatter.Deserialize(fs);
+                return loadMovement;
+            }
         }
 
-        public override void SaveFiles(string filePath, IEnumerable<AbstractFigure> figuresOnDesk)
+        public override void SaveFiles(string filePath, List<AbstractFigure> figuresOnDesk)
         {
-            throw new NotImplementedException();
+            using (FileStream fs = new FileStream(filePath,FileMode.OpenOrCreate))
+            {
+                this.formatter.Serialize(fs, figuresOnDesk);
+            }
         }
     }
 }
