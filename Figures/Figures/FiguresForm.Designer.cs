@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFiguresForm));
             this.toolPanel = new System.Windows.Forms.Panel();
+            this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.buttonSaveFile = new System.Windows.Forms.Button();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
@@ -46,109 +48,87 @@
             // 
             // toolPanel
             // 
-            this.toolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.toolPanel, "toolPanel");
             this.toolPanel.BackColor = System.Drawing.SystemColors.Highlight;
+            this.toolPanel.Controls.Add(this.languageComboBox);
             this.toolPanel.Controls.Add(this.buttonSaveFile);
             this.toolPanel.Controls.Add(this.buttonOpenFile);
             this.toolPanel.Controls.Add(this.buttonStop);
             this.toolPanel.Controls.Add(this.buttonForRectangle);
             this.toolPanel.Controls.Add(this.buttonforCircle);
             this.toolPanel.Controls.Add(this.buttonForTriangle);
-            this.toolPanel.Location = new System.Drawing.Point(126, -2);
             this.toolPanel.Name = "toolPanel";
-            this.toolPanel.Size = new System.Drawing.Size(675, 50);
-            this.toolPanel.TabIndex = 0;
+            // 
+            // languageComboBox
+            // 
+            this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.languageComboBox.FormattingEnabled = true;
+            this.languageComboBox.Items.AddRange(new object[] {
+            resources.GetString("languageComboBox.Items"),
+            resources.GetString("languageComboBox.Items1")});
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
+            this.languageComboBox.Name = "languageComboBox";
+            this.languageComboBox.SelectedValueChanged += new System.EventHandler(this.languageComboBox_SelectedValueChanged);
             // 
             // buttonSaveFile
             // 
-            this.buttonSaveFile.Location = new System.Drawing.Point(92, 13);
+            resources.ApplyResources(this.buttonSaveFile, "buttonSaveFile");
             this.buttonSaveFile.Name = "buttonSaveFile";
-            this.buttonSaveFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonSaveFile.TabIndex = 5;
-            this.buttonSaveFile.Text = "Save";
             this.buttonSaveFile.UseVisualStyleBackColor = true;
             this.buttonSaveFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
             // 
             // buttonOpenFile
             // 
-            this.buttonOpenFile.Location = new System.Drawing.Point(10, 14);
+            resources.ApplyResources(this.buttonOpenFile, "buttonOpenFile");
             this.buttonOpenFile.Name = "buttonOpenFile";
-            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenFile.TabIndex = 4;
-            this.buttonOpenFile.Text = "Open";
             this.buttonOpenFile.UseVisualStyleBackColor = true;
             this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
             // 
             // buttonStop
             // 
-            this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStop.Location = new System.Drawing.Point(587, 14);
+            resources.ApplyResources(this.buttonStop, "buttonStop");
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(75, 23);
-            this.buttonStop.TabIndex = 3;
-            this.buttonStop.Text = "Stop";
             this.buttonStop.UseVisualStyleBackColor = true;
             this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
             // 
             // buttonForRectangle
             // 
-            this.buttonForRectangle.Location = new System.Drawing.Point(432, 14);
+            resources.ApplyResources(this.buttonForRectangle, "buttonForRectangle");
             this.buttonForRectangle.Name = "buttonForRectangle";
-            this.buttonForRectangle.Size = new System.Drawing.Size(75, 23);
-            this.buttonForRectangle.TabIndex = 2;
-            this.buttonForRectangle.Text = "Rectangle";
             this.buttonForRectangle.UseVisualStyleBackColor = true;
             this.buttonForRectangle.Click += new System.EventHandler(this.buttonForRectangle_Click);
             // 
             // buttonforCircle
             // 
-            this.buttonforCircle.Location = new System.Drawing.Point(351, 14);
+            resources.ApplyResources(this.buttonforCircle, "buttonforCircle");
             this.buttonforCircle.Name = "buttonforCircle";
-            this.buttonforCircle.Size = new System.Drawing.Size(75, 23);
-            this.buttonforCircle.TabIndex = 1;
-            this.buttonforCircle.Text = "Circle";
             this.buttonforCircle.UseVisualStyleBackColor = true;
             this.buttonforCircle.Click += new System.EventHandler(this.buttonforCircle_Click);
             // 
             // buttonForTriangle
             // 
-            this.buttonForTriangle.Location = new System.Drawing.Point(270, 14);
+            resources.ApplyResources(this.buttonForTriangle, "buttonForTriangle");
             this.buttonForTriangle.Name = "buttonForTriangle";
-            this.buttonForTriangle.Size = new System.Drawing.Size(75, 23);
-            this.buttonForTriangle.TabIndex = 0;
-            this.buttonForTriangle.Text = "Triangle";
             this.buttonForTriangle.UseVisualStyleBackColor = true;
             this.buttonForTriangle.Click += new System.EventHandler(this.buttonForTriangle_Click);
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(-1, -2);
+            resources.ApplyResources(this.treeView1, "treeView1");
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(130, 453);
-            this.treeView1.TabIndex = 1;
             // 
             // MainFiguresBox
             // 
-            this.MainFiguresBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.MainFiguresBox, "MainFiguresBox");
             this.MainFiguresBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.MainFiguresBox.Location = new System.Drawing.Point(129, 47);
             this.MainFiguresBox.Name = "MainFiguresBox";
-            this.MainFiguresBox.Size = new System.Drawing.Size(672, 404);
-            this.MainFiguresBox.TabIndex = 2;
             this.MainFiguresBox.TabStop = false;
             this.MainFiguresBox.Resize += new System.EventHandler(this.MainFiguresBox_Resize);
             // 
             // treeFigures
             // 
-            this.treeFigures.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeFigures.Location = new System.Drawing.Point(-1, 1);
+            resources.ApplyResources(this.treeFigures, "treeFigures");
             this.treeFigures.Name = "treeFigures";
-            this.treeFigures.Size = new System.Drawing.Size(130, 450);
-            this.treeFigures.TabIndex = 3;
             // 
             // timerForRedrawForm
             // 
@@ -157,16 +137,13 @@
             // 
             // MainFiguresForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.treeFigures);
             this.Controls.Add(this.MainFiguresBox);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.toolPanel);
             this.Name = "MainFiguresForm";
-            this.RightToLeftLayout = true;
-            this.Text = "FiguresForm";
             this.toolPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainFiguresBox)).EndInit();
             this.ResumeLayout(false);
@@ -186,5 +163,6 @@
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button buttonSaveFile;
         private System.Windows.Forms.Button buttonOpenFile;
+        private System.Windows.Forms.ComboBox languageComboBox;
     }
 }

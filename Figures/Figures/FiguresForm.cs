@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
+using System.Globalization;
 using FiguresBase.Figures;
 using FiguresBase;
 
@@ -48,7 +50,11 @@ namespace FiguresForm
 
         public MainFiguresForm()
         {
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru");
+            //Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("ru");
+
             this.InitializeComponent();
+            
             this.figuresOnDesk = new List<AbstractFigure>();
             this.timerForRedrawForm.Enabled = true;
             this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;          
@@ -209,5 +215,10 @@ namespace FiguresForm
 
         public event EventHandler FileOpenClick;
         public event EventHandler FileSaveClick;
+
+        private void languageComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

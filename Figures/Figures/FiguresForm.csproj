@@ -58,6 +58,9 @@
     <EmbeddedResource Include="FiguresForm.resx">
       <DependentUpon>FiguresForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FiguresForm.ru.resx">
+      <DependentUpon>FiguresForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
