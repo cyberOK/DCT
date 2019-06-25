@@ -6,6 +6,7 @@ using System.Threading;
 using System.Globalization;
 using FiguresBase.Figures;
 using FiguresBase;
+using RandomForFiguresForm;
 
 namespace FiguresForm
 {
@@ -23,11 +24,12 @@ namespace FiguresForm
 
         private Graphics graphicsUnit;
         private List<AbstractFigure> figuresOnDesk;
-        private Random randomForPosition;
         private Point startPosition;
+        private Point startSpeed;
         private float sizeForFigures = 50;
         private Size sizeOfMainFiguresBox;
         private string filePath;
+        RandomSpecifications randomSpecificator;
 
         #endregion
 
@@ -60,7 +62,8 @@ namespace FiguresForm
             
             this.figuresOnDesk = new List<AbstractFigure>();
             this.timerForRedrawForm.Enabled = true;
-            this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;          
+            this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;
+            this.randomSpecificator = new RandomSpecifications();
         }
 
         #endregion
@@ -93,7 +96,8 @@ namespace FiguresForm
 
         private void buttonForTriangle_Click(object sender, EventArgs e)
         {
-            startPosition = GetStartPositionCoordinates();
+            startPosition = randomSpecificator.GetStartPositionCoordinates((int)sizeForFigures, sizeOfMainFiguresBox.Width - (int)sizeForFigures, (int)sizeForFigures, sizeOfMainFiguresBox.Height - (int)sizeForFigures);
+            startSpeed = randomSpecificator.GetStartSpeed(1, 20);
             AbstractFigure triangle = new Triangle(startPosition, sizeForFigures);
             figuresOnDesk.Add(triangle);
             CreateNewTreeNode(triangle);
@@ -106,7 +110,8 @@ namespace FiguresForm
 
         private void buttonforCircle_Click(object sender, EventArgs e)
         {
-            startPosition = GetStartPositionCoordinates();
+            startPosition = randomSpecificator.GetStartPositionCoordinates((int)sizeForFigures, sizeOfMainFiguresBox.Width - (int)sizeForFigures, (int)sizeForFigures, sizeOfMainFiguresBox.Height - (int)sizeForFigures);
+            startSpeed = randomSpecificator.GetStartSpeed(1, 20);
             AbstractFigure circle = new Circle(startPosition, sizeForFigures);
             figuresOnDesk.Add(circle);
             CreateNewTreeNode(circle);
@@ -119,7 +124,8 @@ namespace FiguresForm
 
         private void buttonForRectangle_Click(object sender, EventArgs e)
         {
-            startPosition = GetStartPositionCoordinates();
+            startPosition = randomSpecificator.GetStartPositionCoordinates((int)sizeForFigures, sizeOfMainFiguresBox.Width - (int)sizeForFigures, (int)sizeForFigures, sizeOfMainFiguresBox.Height - (int)sizeForFigures);
+            startSpeed = randomSpecificator.GetStartSpeed(1, 20);
             AbstractFigure rectangle = new FiguresBase.Figures.Rectangle(startPosition, sizeForFigures);
             figuresOnDesk.Add(rectangle);
             CreateNewTreeNode(rectangle);
@@ -203,16 +209,16 @@ namespace FiguresForm
             treeFigures.Nodes.Add(newNode);
         }
 
-        private Point GetStartPositionCoordinates()
-        {
-            randomForPosition = new Random();
-            Point startCoordinates = new Point
-            {
-                X = randomForPosition.Next((int)sizeForFigures, sizeOfMainFiguresBox.Width - (int)sizeForFigures),
-                Y = randomForPosition.Next((int)sizeForFigures, sizeOfMainFiguresBox.Height - (int)sizeForFigures)
-            };
-            return startCoordinates;
-        }
+        //private Point GetStartPositionCoordinates()
+        //{
+        //    randomForPosition = new Random();
+        //    Point startCoordinates = new Point
+        //    {
+        //        X = randomForPosition.Next((int)sizeForFigures, sizeOfMainFiguresBox.Width - (int)sizeForFigures),
+        //        Y = randomForPosition.Next((int)sizeForFigures, sizeOfMainFiguresBox.Height - (int)sizeForFigures)
+        //    };
+        //    return startCoordinates;
+        //}
 
         private void CollisionCheck(AbstractFigure figureToCheck, IEnumerable<AbstractFigure> figureCollection)
         {
