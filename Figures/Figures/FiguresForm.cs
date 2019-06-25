@@ -50,9 +50,12 @@ namespace FiguresForm
 
         public MainFiguresForm()
         {
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru");
-            //Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("ru");
-
+            if (!String.IsNullOrEmpty(Properties.Settings.Default.Language))
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.Language);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.Language);
+            }
+            
             this.InitializeComponent();
             
             this.figuresOnDesk = new List<AbstractFigure>();
@@ -169,6 +172,25 @@ namespace FiguresForm
             }            
         }
 
+        private void languageComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (languageComboBox.SelectedItem == CultureInfo.GetCultureInfo("en"))
+            {
+                Properties.Settings.Default.Language = languageComboBox.SelectedValue.ToString();
+                Properties.Settings.Default.Save();
+
+                Application.Restart();
+            }
+
+            if (languageComboBox.SelectedItem == CultureInfo.GetCultureInfo("ru"))
+            {
+                Properties.Settings.Default.Language = languageComboBox.SelectedValue.ToString();
+                Properties.Settings.Default.Save();
+
+                Application.Restart();
+            }
+        }
+
         #endregion
 
         #region Helpful methods
@@ -215,10 +237,5 @@ namespace FiguresForm
 
         public event EventHandler FileOpenClick;
         public event EventHandler FileSaveClick;
-
-        private void languageComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

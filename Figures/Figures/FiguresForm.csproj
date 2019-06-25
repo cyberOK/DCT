@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6C308568-362A-4893-AEF2-6270AAA30DF6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Figures</RootNamespace>
+    <RootNamespace>FiguresForm</RootNamespace>
     <AssemblyName>Figures</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

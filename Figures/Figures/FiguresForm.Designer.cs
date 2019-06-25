@@ -1,4 +1,6 @@
-﻿namespace FiguresForm
+﻿using System.Globalization;
+
+namespace FiguresForm
 {
     partial class MainFiguresForm
     {
@@ -63,11 +65,18 @@
             // 
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
-            this.languageComboBox.Items.AddRange(new object[] {
-            resources.GetString("languageComboBox.Items"),
-            resources.GetString("languageComboBox.Items1")});
             resources.ApplyResources(this.languageComboBox, "languageComboBox");
             this.languageComboBox.Name = "languageComboBox";
+
+            languageComboBox.DataSource = new CultureInfo[]
+           {
+                CultureInfo.GetCultureInfo("en"),
+                CultureInfo.GetCultureInfo("ru")
+           };
+
+            languageComboBox.DisplayMember = "NativeName";
+            languageComboBox.ValueMember = "Name";
+
             this.languageComboBox.SelectedValueChanged += new System.EventHandler(this.languageComboBox_SelectedValueChanged);
             // 
             // buttonSaveFile
