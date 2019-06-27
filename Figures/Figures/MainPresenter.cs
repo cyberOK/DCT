@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FiguresBase.FileManager;
 using FiguresBase;
+using FiguresBase.FileManager;
 
 namespace FiguresForm
 {
@@ -15,23 +15,23 @@ namespace FiguresForm
             this.figuresForm = form;
             this.fileManager = fileManager;
 
-            form.FileOpenClick += Form_FileOpenClick;
-            form.FileSaveClick += Form_FileSaveClick;
+            form.FileOpenClick += this.Form_FileOpenClick;
+            form.FileSaveClick += this.Form_FileSaveClick;            
         }
 
         private void Form_FileSaveClick(object sender, EventArgs e)
         {
-            string fileName = figuresForm.FilePath;
-            List<AbstractFigure> figuresOnDesk = (List<AbstractFigure>)figuresForm.FiguresOnDesk;
+            string fileName = this.figuresForm.FilePath;
+            List<AbstractFigure> figuresOnDesk = (List<AbstractFigure>)this.figuresForm.FiguresOnDesk;
 
-            fileManager.SaveGame(fileName, figuresOnDesk);
+            this.fileManager.SaveGame(fileName, figuresOnDesk);
         }
 
         private void Form_FileOpenClick(object sender, EventArgs e)
         {
-            string fileName = figuresForm.FilePath;
+            string fileName = this.figuresForm.FilePath;
 
-            figuresForm.FiguresOnDesk = fileManager.GetSaveGame(fileName);
+            this.figuresForm.FiguresOnDesk = this.fileManager.GetSaveGame(fileName);
         }
     }
 }

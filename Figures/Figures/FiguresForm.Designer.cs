@@ -33,7 +33,9 @@ namespace FiguresForm
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFiguresForm));
             this.toolPanel = new System.Windows.Forms.Panel();
+            this.buttonSubstractCollisionEvent = new System.Windows.Forms.Button();
             this.languageComboBox = new System.Windows.Forms.ComboBox();
+            this.buttonAddCollisionEvent = new System.Windows.Forms.Button();
             this.buttonSaveFile = new System.Windows.Forms.Button();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
@@ -52,7 +54,9 @@ namespace FiguresForm
             // 
             resources.ApplyResources(this.toolPanel, "toolPanel");
             this.toolPanel.BackColor = System.Drawing.SystemColors.Highlight;
+            this.toolPanel.Controls.Add(this.buttonSubstractCollisionEvent);
             this.toolPanel.Controls.Add(this.languageComboBox);
+            this.toolPanel.Controls.Add(this.buttonAddCollisionEvent);
             this.toolPanel.Controls.Add(this.buttonSaveFile);
             this.toolPanel.Controls.Add(this.buttonOpenFile);
             this.toolPanel.Controls.Add(this.buttonStop);
@@ -61,23 +65,35 @@ namespace FiguresForm
             this.toolPanel.Controls.Add(this.buttonForTriangle);
             this.toolPanel.Name = "toolPanel";
             // 
+            // buttonSubstractCollisionEvent
+            // 
+            resources.ApplyResources(this.buttonSubstractCollisionEvent, "buttonSubstractCollisionEvent");
+            this.buttonSubstractCollisionEvent.Name = "buttonSubstractCollisionEvent";
+            this.buttonSubstractCollisionEvent.UseVisualStyleBackColor = true;
+            this.buttonSubstractCollisionEvent.Click += new System.EventHandler(this.buttonSubstractCollisionEvent_Click);
+            // 
             // languageComboBox
             // 
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");            
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.languageComboBox, "languageComboBox");
+            this.languageComboBox.Items.AddRange(new object[] {
+            ((object)(resources.GetObject("languageComboBox.Items"))),
+            ((object)(resources.GetObject("languageComboBox.Items1")))});
             this.languageComboBox.Name = "languageComboBox";
-
-            languageComboBox.DataSource = new CultureInfo[]
-           {
-                CultureInfo.GetCultureInfo("en"),
-                CultureInfo.GetCultureInfo("ru")
-           };
-
-            languageComboBox.DisplayMember = "NativeName";
-            languageComboBox.ValueMember = "Name";
-
+            this.languageComboBox.DataSource = new System.Globalization.CultureInfo[] {
+        new System.Globalization.CultureInfo("en"),
+        new System.Globalization.CultureInfo("ru")};
+            this.languageComboBox.DisplayMember = "NativeName";
+            this.languageComboBox.ValueMember = "Name";
             this.languageComboBox.SelectedValueChanged += new System.EventHandler(this.languageComboBox_SelectedValueChanged);
+            // 
+            // buttonAddCollisionEvent
+            // 
+            resources.ApplyResources(this.buttonAddCollisionEvent, "buttonAddCollisionEvent");
+            this.buttonAddCollisionEvent.Name = "buttonAddCollisionEvent";
+            this.buttonAddCollisionEvent.UseVisualStyleBackColor = true;
+            this.buttonAddCollisionEvent.Click += new System.EventHandler(this.buttonAddCollisionEvent_Click);
             // 
             // buttonSaveFile
             // 
@@ -173,5 +189,7 @@ namespace FiguresForm
         private System.Windows.Forms.Button buttonSaveFile;
         private System.Windows.Forms.Button buttonOpenFile;
         private System.Windows.Forms.ComboBox languageComboBox;
+        private System.Windows.Forms.Button buttonSubstractCollisionEvent;
+        private System.Windows.Forms.Button buttonAddCollisionEvent;
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using FiguresBase.Figures;
 using FiguresBase.Serializators;
 
 namespace FiguresBase.FileManager
@@ -26,12 +25,12 @@ namespace FiguresBase.FileManager
         {            
             IEnumerable<AbstractFigure> loadGame;
 
-            string fileExtension = GetFileExtention(fileName);
+            string fileExtension = this.GetFileExtention(fileName);
 
             try
             {
-                serializer = this.CreateSerializerByExtention(fileExtension);
-                loadGame = serializer.OpenFiles(fileName);
+                this.serializer = this.CreateSerializerByExtention(fileExtension);
+                loadGame = this.serializer.OpenFiles(fileName);
                 return loadGame;
             }
             catch (Exception e) // Need to complete this
@@ -42,18 +41,17 @@ namespace FiguresBase.FileManager
 
         public void SaveGame(string fileName, List<AbstractFigure> figuresOnDesk)
         {
-            string fileExtention = GetFileExtention(fileName);
+            string fileExtention = this.GetFileExtention(fileName);
 
             try
             {
-                serializer = CreateSerializerByExtention(fileExtention);
-                serializer.SaveFiles(fileName, figuresOnDesk);
+                this.serializer = this.CreateSerializerByExtention(fileExtention);
+                this.serializer.SaveFiles(fileName, figuresOnDesk);
             }
             catch (Exception e) // Need to complete this
             {
                 throw e;
             }
-
         }
 
         private string GetFileExtention(string fileWithExtention)
@@ -74,7 +72,7 @@ namespace FiguresBase.FileManager
                 case ".json":
                     return new JsonSerializer();
                 default:
-                    throw new Exception("Don't find save format");
+                    throw new Exception("Don't define save format");
             }
         }
     }

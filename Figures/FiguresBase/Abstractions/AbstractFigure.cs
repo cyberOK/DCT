@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.Serialization;
+using System.Threading;
+using FiguresBase.EventArguments;
 using FiguresBase.Figures;
 
 namespace FiguresBase
@@ -11,7 +13,9 @@ namespace FiguresBase
     [DataContract]
     [Serializable]
     public abstract class AbstractFigure
-    {    
+    {
+        #region Fields
+
         [DataMember]
         public int dx = 20, dy = 5;
 
@@ -19,6 +23,10 @@ namespace FiguresBase
         private float sizeForFigures;
         private Point speed;
         private System.Drawing.Rectangle intersectZone;
+
+        #endregion
+
+        #region Constructors
 
         public AbstractFigure() { }
 
@@ -30,6 +38,8 @@ namespace FiguresBase
             this.speed = startPosition;
             this.intersectZone = new System.Drawing.Rectangle { X = startPosition.X, Y = startPosition.Y, Width = (int)size, Height = (int)size };
         }
+
+        #endregion
 
         #region Properties
 
@@ -75,8 +85,35 @@ namespace FiguresBase
 
         #endregion
 
+        #region Abstract methods Move,Draw
+
         public abstract void Move(Point p);
 
         public abstract void Draw(Graphics g);
+
+        #endregion
+
+        #region Events and Invocations
+
+        public void CollisionOccur(System.Drawing.Rectangle collisionCoordinate)
+        {
+            CollisionEventArgs e = new CollisionEventArgs(collisionCoordinate);
+
+            OnCollision(e);
+        }
+
+        public virtual void OnCollision(CollisionEventArgs e)
+        {
+            EventHandler<CollisionEventArgs> temp = Volatile.Read(ref Collision);
+
+            if(temp != null)
+            {
+                temp(this, e);
+            }
+        }
+
+        public event EventHandler<CollisionEventArgs> Collision;
+
+        #endregion
     }
 }

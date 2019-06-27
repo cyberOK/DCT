@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\AbstractFigure.cs" />
+    <Compile Include="EventArguments\CollisionEventArgs.cs" />
     <Compile Include="Figures\Circle.cs" />
     <Compile Include="Figures\Rectangle.cs" />
     <Compile Include="Figures\Triangle.cs" />

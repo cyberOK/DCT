@@ -59,6 +59,9 @@
     <Compile Include="MainPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FiguresForm.en.resx">
+      <DependentUpon>FiguresForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FiguresForm.resx">
       <DependentUpon>FiguresForm.cs</DependentUpon>
     </EmbeddedResource>

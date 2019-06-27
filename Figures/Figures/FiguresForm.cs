@@ -7,6 +7,7 @@ using System.Globalization;
 using FiguresBase.Figures;
 using FiguresBase;
 using RandomForFiguresForm;
+using FiguresBase.EventArguments;
 
 namespace FiguresForm
 {
@@ -63,7 +64,7 @@ namespace FiguresForm
             this.figuresOnDesk = new List<AbstractFigure>();
             this.timerForRedrawForm.Enabled = true;
             this.sizeOfMainFiguresBox = this.MainFiguresBox.Size;
-            this.randomSpecificator = new RandomSpecifications();
+            this.randomSpecificator = new RandomSpecifications();           
         }
 
         #endregion
@@ -180,20 +181,31 @@ namespace FiguresForm
 
         private void languageComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (languageComboBox.SelectedItem == CultureInfo.GetCultureInfo("en"))
-            {
-                Properties.Settings.Default.Language = languageComboBox.SelectedValue.ToString();
-                Properties.Settings.Default.Save();
+            Properties.Settings.Default.Language = languageComboBox.SelectedValue.ToString();
+            Properties.Settings.Default.Save();
 
-                Application.Restart();
+            Application.Restart();
+        }
+
+        private void buttonAddCollisionEvent_Click(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = treeFigures.SelectedNode;
+
+            if(selectedNode != null)
+            {
+                var figure = (AbstractFigure)selectedNode.Tag;
+                figure.Collision += CollisionAlert;
             }
+        }
 
-            if (languageComboBox.SelectedItem == CultureInfo.GetCultureInfo("ru"))
+        private void buttonSubstractCollisionEvent_Click(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = treeFigures.SelectedNode;
+
+            if (selectedNode != null)
             {
-                Properties.Settings.Default.Language = languageComboBox.SelectedValue.ToString();
-                Properties.Settings.Default.Save();
-
-                Application.Restart();
+                var figure = (AbstractFigure)selectedNode.Tag;
+                figure.Collision -= CollisionAlert;
             }
         }
 
@@ -209,17 +221,6 @@ namespace FiguresForm
             treeFigures.Nodes.Add(newNode);
         }
 
-        //private Point GetStartPositionCoordinates()
-        //{
-        //    randomForPosition = new Random();
-        //    Point startCoordinates = new Point
-        //    {
-        //        X = randomForPosition.Next((int)sizeForFigures, sizeOfMainFiguresBox.Width - (int)sizeForFigures),
-        //        Y = randomForPosition.Next((int)sizeForFigures, sizeOfMainFiguresBox.Height - (int)sizeForFigures)
-        //    };
-        //    return startCoordinates;
-        //}
-
         private void CollisionCheck(AbstractFigure figureToCheck, IEnumerable<AbstractFigure> figureCollection)
         {
             foreach (AbstractFigure secondFigure in figuresOnDesk)
@@ -228,15 +229,40 @@ namespace FiguresForm
                     continue;
                 else if (figureToCheck.IntersectZone.IntersectsWith(secondFigure.IntersectZone))
                 {
-                    figureToCheck.dx = -figureToCheck.dx;
-                    figureToCheck.dy = -figureToCheck.dy;
-                    figureToCheck.StartPosition = new Point { X = figureToCheck.dx, Y = figureToCheck.dy };
-
-                    secondFigure.dx = -figureToCheck.dx;
-                    secondFigure.dy = -figureToCheck.dy;
-                    secondFigure.StartPosition = new Point { X = secondFigure.dx, Y = secondFigure.dy };
+                    ChangeDirectioOnCollision(figureToCheck, secondFigure);
+                    SameFiguresCollisionCheck(figureToCheck, secondFigure);
                 }
             }
+        }
+
+        private void SameFiguresCollisionCheck(AbstractFigure firstFigure, AbstractFigure secondFigure)
+        {
+            if(firstFigure.GetType() == secondFigure.GetType())
+            {
+                System.Drawing.Rectangle collisionZone;
+
+                collisionZone = System.Drawing.Rectangle.Intersect(firstFigure.IntersectZone, secondFigure.IntersectZone);
+               
+                CollisionEventArgs e = new CollisionEventArgs(collisionZone);
+
+                firstFigure.OnCollision(e);
+                secondFigure.OnCollision(e);
+            }
+        }
+
+        private void ChangeDirectioOnCollision(AbstractFigure firstFigure, AbstractFigure secondFigure)
+        {
+            firstFigure.dx = -firstFigure.dx;
+            firstFigure.dy = -firstFigure.dy;
+
+            secondFigure.dx = -firstFigure.dx;
+            secondFigure.dy = -firstFigure.dy;
+        }
+
+        private void CollisionAlert(object sender, CollisionEventArgs e)
+        {
+            Console.Beep();
+            Console.WriteLine("Collision coordinates is X: {0} Y: {1} Width: {2} Height: {3}" , e.CollisionCordinate.X, e.CollisionCordinate.Y, e.CollisionCordinate.Width, e.CollisionCordinate.Height);
         }
 
         #endregion
